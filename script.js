@@ -1,38 +1,63 @@
+    let pokemones = [
+      {nombre: "Pikachu", nivel: 12, tipo: ["Eléctrico"], foto: "pikachu.png", hp: 35, hp_total: 35, evolución: true},
+      {nombre: "Charmander", nivel: 10, tipo: ["Fuego"], foto: "charmander.png", hp: 39, hp_total: 39, evolución: true},
+      {nombre: "Squirtle", nivel: 9, tipo: ["Agua"], foto: "squirtle.png", hp: 44, hp_total: 44, evolución: true}
+    ];
 
-//Arrays
-let seguir_cargando = false;
-const pokemones = [];
-const pokemon = {
-  nombre: "",
-  nivel: 0,
-  tipo: [],
-  foto: "",
-  hp: 0,
-  hp_total: 0,
-  evolución: false,
-};
-//Captura
-do {
-  //Carga de pokemones
-  pokemon.nombre = prompt("Ingrese el nombre del Pokémon:");
-  pokemon.nivel = Number(prompt("Ingrese el nivel del Pokémon:"));
+    let opcion;
+    do {
+      opcion = prompt("1=Mostrar  2=Cargar  3=Restar HP  4=Salir");
 
-  //guardamos los datos en el array de
-  pokemones.push(pokemon);
-  let terminar = prompt("¿Desea cargar otro Pokémon? (si/no)");
-  //reiniciamos el chekeo de la variable para seguir o no cargando datos
-  seguir_cargando = false;
-  if (terminar === "si") {
-    seguir_cargando = true;
-  }
-} while (seguir_cargando === true);
+      if (opcion === "1") {
+        console.log(pokemones);
+        for (let i=0; i<pokemones.length; i++) {
+          console.log(pokemones[i].nombre);
+        }
+      }
 
-//Mostrar datos cargados en array
-console.log(pokemones);
-for (let i = 0; i < pokemones.length; i++) {
-  console.log(
-    "Nombre: " + pokemones[i].nombre + ", Nivel: " + pokemones[i].nivel
-  );
-}
-//Mostrar datos cargados en array en formato mas amigable
+      if (opcion === "2") {
+        let nombre = prompt("Nombre:");
+        let nivel = Number(prompt("Nivel:"));
+        let tipo = prompt("Tipos separados por coma:").split(",");
+        let foto = prompt("Foto (url):");
+        let hp_total = Number(prompt("HP total:"));
+        let hp = hp_total;
+        let evolucion = prompt("¿Evoluciona? (si/no)") === "si";
 
+        let nuevo = {nombre: nombre, nivel: nivel, tipo: tipo, foto: foto, hp: hp, hp_total: hp_total, evolución: evolucion};
+        pokemones.push(nuevo);
+
+        console.log(pokemones);
+        for (let i=0; i<pokemones.length; i++) {
+          console.log(pokemones[i].nombre);
+        }
+      }
+
+      if (opcion === "3") {
+        let nombre = prompt("A qué Pokémon restar HP:");
+        let daño = Number(prompt("Cuánto HP restar:"));
+        let encontrado = false;
+
+        for (let i=0; i<pokemones.length; i++) {
+          if (pokemones[i].nombre.toLowerCase() === nombre.toLowerCase()) {
+            pokemones[i].hp = pokemones[i].hp - daño;
+            if (pokemones[i].hp < 0) {
+              pokemones[i].hp = 0;
+            }
+            console.log(pokemones[i].nombre + " ahora tiene " + pokemones[i].hp + "/" + pokemones[i].hp_total);
+            encontrado = true;
+          }
+        }
+
+        if (encontrado === false) {
+          console.log("Pokémon no encontrado.");
+        }
+
+        console.log(pokemones);
+        for (let i=0; i<pokemones.length; i++) {
+          console.log(pokemones[i].nombre);
+        }
+      }
+
+    } while (opcion !== "4");
+    
