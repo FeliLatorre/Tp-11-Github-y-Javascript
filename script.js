@@ -1,7 +1,8 @@
     let pokemones = [
       {nombre: "Pikachu", nivel: 12, tipo: ["Eléctrico"], foto: "pikachu.png", hp: 35, hp_total: 35, evolución: true},
       {nombre: "Charmander", nivel: 10, tipo: ["Fuego"], foto: "charmander.png", hp: 39, hp_total: 39, evolución: true},
-      {nombre: "Squirtle", nivel: 9, tipo: ["Agua"], foto: "squirtle.png", hp: 44, hp_total: 44, evolución: true}
+      {nombre: "Squirtle", nivel: 9, tipo: ["Agua"], foto: "squirtle.png", hp: 44, hp_total: 44, evolución: true},
+      {nombre: "Raycuaza", nivel: 25, tipo: ["Legendario"], foto: "raycuaza.png", hp: 300, hp_total: 300, evolution: false}
     ];
 
     let opcion;
